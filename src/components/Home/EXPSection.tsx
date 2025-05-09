@@ -35,12 +35,12 @@ export default function ExperienceSection() {
             <div className="absolute h-[100%] inset-0 bg-gradient-to-b from-[#ffffff] via-[#C18496] to-[#ffffff] backdrop-blur-xl"></div>
 
             <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">
+                <h2 className="text-2xl md:text-4xl font-bold text-center text-gray-900 mb-4">
                 It’s a Whole Experience
                 </h2>
 
                 {/* Description */}
-                <p className="text-lg md:text-xl text-center text-[#616161] font-semibold max-w-3xl mx-auto mb-8 md:mb-12">
+                <p className="text-md md:text-xl text-center text-[#616161] font-semibold max-w-3xl mx-auto mb-8 md:mb-12">
                 Think it’s just random? Think again — it’s real, raw, and way more fun.
                 </p>
 

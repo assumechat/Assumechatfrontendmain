@@ -89,7 +89,7 @@ export default function HeroSection() {
     }) => (
         <div
             ref={el => addToRefs(el, index, 'review')}
-            className={`absolute ${positionClass} flex justify-start border border-black bg-white bg-opacity-80 backdrop-blur-md p-4 rounded-lg shadow-lg w-60 transition-transform duration-300`}
+            className={`absolute ${positionClass} min-w-40 sm:min-w-48 md:w-60 flex border border-black bg-white bg-opacity-80 backdrop-blur-md p-4 rounded-lg shadow-lg transition-transform duration-300`}
         >
             <div className='mr-2'>
                 <svg width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -171,8 +171,8 @@ export default function HeroSection() {
 
     return (
         <>
-            <div className='w-full flex justify-center px-16 items-center'>
-                <div className="relative min-h-screen w-1/2 overflow-hidden bg-white flex flex-col items-center justify-center">
+            <div className='w-full flex md:pt-0 pt-14 md:flex-row flex-col-reverse justify-center md:px-16 items-center'>
+                <div className="relative min-h-screen w-full md:w-1/2 overflow-hidden bg-white flex flex-col items-center justify-center">
                     <div className=''>
                         {/* Background SVGs */}
                         <div className="absolute pt-20 inset-0 flex items-center justify-center opacity-30">
@@ -202,7 +202,7 @@ export default function HeroSection() {
 
                         <ReviewCard
                             index={3}
-                            positionClass="top-45 right-2"
+                            positionClass="top-20 md:top-45 w-40 md:right-2 right-2"
                             quote="We Think You’re Interesting."
                             author="But Then Again, We Assume A Lot."
                             stars={3}
@@ -211,7 +211,7 @@ export default function HeroSection() {
                         {/* Bottom Reviews */}
                         <ReviewCard
                             index={4}
-                            positionClass="top-40 left-1"
+                            positionClass="top-55 md:top-40 w-40 left-1 md:left-1"
                             quote="Assume Freely"
                             author="You assumed this would be anonymous. You're right."
                             stars={3}
@@ -219,7 +219,7 @@ export default function HeroSection() {
 
                         <ReviewCard
                             index={5}
-                            positionClass="bottom-10 right-2/6"
+                            positionClass="md:bottom-10 bottom-10 right-1/3 md:right-2/6"
                             quote="All about that chaos"
                             author="You came for the chat, stayed for the chaos."
                             stars={3}
@@ -228,7 +228,7 @@ export default function HeroSection() {
                         {/* Floating Icons */}
                         <FloatingIcon
                             index={0}
-                            positionClass="bottom-50 right-10 transform -translate-x-1/2"
+                            positionClass="bottem-10 md:bottom-50 right-10 transform -translate-x-1/2"
                             icon="eye"
                         />
 
@@ -250,7 +250,7 @@ export default function HeroSection() {
                                 We've Made Some <br /> <span className='text-[#B30738]'>Bold Assumptions.</span>
                             </h1>
 
-                            <p className="text-gray-800 text-md max-w-2xl mx-auto ">
+                            <p className="text-gray-800 text-xs max-w-2xl mx-auto ">
                                 Log In and Set the Record Straight.
                             </p>
                         </div>
@@ -262,7 +262,7 @@ export default function HeroSection() {
                         <div className="text-center mb-8">
                             <h1 className="text-3xl font-bold text-black mb-2">Welcome Back!</h1>
                             <p className="text-gray-500">
-                                {isLogin ? 'Already One of Us? Let’s Get You Back In.' : 'Create a new account'}
+                                {isLogin ? 'Already One of Us? Let’s Get You Back In.' : 'Sign Up and Let the Conversations Find You.'}
                             </p>
                         </div>
 
@@ -282,7 +282,7 @@ export default function HeroSection() {
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                         className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B30738] focus:border-transparent"
-                                        placeholder="your@email.com"
+                                        placeholder="yourname@university.edu"
                                         required
                                     />
                                 </div>
@@ -303,7 +303,7 @@ export default function HeroSection() {
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         className="block w-full pl-10 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B30738] focus:border-transparent"
-                                        placeholder="••••••••"
+                                        placeholder="At least 8 characters"
                                         required
                                         minLength={8}
                                     />
@@ -362,7 +362,7 @@ export default function HeroSection() {
                                             value={confirmPassword}
                                             onChange={(e) => setConfirmPassword(e.target.value)}
                                             className="block w-full pl-10 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B30738] focus:border-transparent"
-                                            placeholder="••••••••"
+                                            placeholder="At least 8 characters"
                                             required
                                             minLength={8}
                                         />
@@ -396,10 +396,10 @@ export default function HeroSection() {
                             <p className="text-gray-600">
                                 {isLogin ? "Don't have an account?" : 'Already have an account?'}{' '}
                                 <a
-                                    href={isLogin ? '/signup' : '/login'}
+                                    href={isLogin ? '/signup' : '/signin'}
                                     className="text-[#B30738] hover:underline font-medium"
                                 >
-                                    {isLogin ? 'Sign up' : 'Login'}
+                                    {isLogin ? 'Sign Up' : 'Sign In'}
                                 </a>
                             </p>
                         </div>

@@ -56,12 +56,12 @@ export default function TestimonialsSection() {
     return (
         <section className="relative py-16">
 
-            <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">
+            <h2 className="text-2xl md:text-4xl font-bold text-center text-gray-900 mb-4">
                 What Students Say About Us
             </h2>
 
             {/* Description */}
-            <p className="text-lg md:text-xl text-center text-[#616161] font-semibold max-w-3xl mx-auto mb-8 md:mb-12">
+            <p className="text-md md:text-xl text-center text-[#616161] font-semibold max-w-3xl mx-auto mb-8 md:mb-12">
                 Don’t Take It From Us — Take It From the Ones Who Assumed.
             </p>
 

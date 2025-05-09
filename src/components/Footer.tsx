@@ -7,23 +7,23 @@ export function FooterSection() {
     return (
         <footer className="bg-white bg-opacity-10 backdrop-blur-md  py-14 md:px-12 mt-16">
             <div className="mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-20">
+                <div className="flex justify-between flex-wrap items-start gap-20">
                     {/* Brand & Description */}
-                    <div className=''>
+                    <div className='max-w-lg'>
                         <h3 className="text-2xl font-bold text-[#B30738]">AssumeChat</h3>
                         <p className="mt-4 text-sm text-gray-600">
                             Meet students beyond your campus walls, spark unexpected conversations, and change your perspective — one chat at a time.
                         </p>
                         <div className="flex space-x-4 mt-4  text-[#B30738]">
-                          <div className='border border-gray-400 rounded-lg p-3'>
-                          <BsTwitterX className="w-4 h-4" />
-                          </div>
-                          <div className='border border-gray-400 rounded-lg p-3'>
-                          <Instagram className="w-4 h-4" />
-                          </div>
-                          <div className='border border-gray-400 rounded-lg p-3'>
-                          <Facebook className="w-4 h-4" />
-                          </div>
+                            <div className='border border-gray-400 rounded-lg p-3'>
+                                <BsTwitterX className="w-4 h-4" />
+                            </div>
+                            <div className='border border-gray-400 rounded-lg p-3'>
+                                <Instagram className="w-4 h-4" />
+                            </div>
+                            <div className='border border-gray-400 rounded-lg p-3'>
+                                <Facebook className="w-4 h-4" />
+                            </div>
                         </div>
                     </div>
 

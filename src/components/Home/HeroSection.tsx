@@ -8,36 +8,28 @@ export default function HeroSection() {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      // Add animation to review cards
       const animateElements = () => {
+        const time = Date.now() * 0.001;
         reviewsRef.current.forEach((review, index) => {
-          const time = Date.now() * 0.001;
           const delay = index * 0.2;
-
-          // Different floating patterns for different positions
-          if (index < 2) { // Top reviews
+          if (index < 2) {
             review.style.transform = `translateY(${Math.sin(time + delay) * 10}px)`;
-          } else if (index < 4) { // Middle reviews
+          } else if (index < 4) {
             review.style.transform = `translateX(${Math.sin(time + delay) * 15}px)`;
-          } else { // Bottom reviews
-            review.style.transform = `translateY(${Math.sin(time + delay) * 8}px) 
-                                     translateX(${Math.cos(time + delay) * 12}px)`;
+          } else {
+            review.style.transform = `translateY(${Math.sin(time + delay) * 8}px) translateX(${Math.cos(time + delay) * 12}px)`;
           }
         });
 
-        // Add animation to floating icons
         iconsRef.current.forEach((icon, index) => {
-          const time = Date.now() * 0.001;
           const delay = index * 0.3;
-
-          // Different floating patterns for icons
-          if (index === 0) { // Middle top icon
+          if (index === 0) {
             icon.style.transform = `translateY(${Math.sin(time + delay) * 8}px) rotate(${Math.sin(time + delay) * 5}deg)`;
-          } else if (index === 1) { // Left of first card
+          } else if (index === 1) {
             icon.style.transform = `translateX(${Math.cos(time + delay) * 10}px) rotate(${Math.cos(time + delay) * 8}deg)`;
-          } else if (index === 2) { // Right of second row card
+          } else if (index === 2) {
             icon.style.transform = `translateY(${Math.sin(time + delay) * 6}px) rotate(${Math.sin(time + delay) * 6}deg)`;
-          } else { // Bottom row icons
+          } else {
             icon.style.transform = `translateX(${Math.cos(time + delay) * 12}px) rotate(${Math.cos(time + delay) * 10}deg)`;
           }
         });
@@ -49,14 +41,11 @@ export default function HeroSection() {
     }
   }, []);
 
+
   const addToRefs = (el: HTMLDivElement | null, index: number, type: 'review' | 'icon') => {
     if (!el) return;
-
-    if (type === 'review' && !reviewsRef.current.includes(el)) {
-      reviewsRef.current[index] = el;
-    } else if (type === 'icon' && !iconsRef.current.includes(el)) {
-      iconsRef.current[index] = el;
-    }
+    if (type === 'review') reviewsRef.current[index] = el;
+    else iconsRef.current[index] = el;
   };
 
   const ReviewCard = ({ index, positionClass, quote, author, stars = 5 }: {
@@ -68,7 +57,7 @@ export default function HeroSection() {
   }) => (
     <div
       ref={el => addToRefs(el, index, 'review')}
-      className={`absolute ${positionClass} flex justify-start border border-black bg-white bg-opacity-80 backdrop-blur-md p-4 rounded-lg shadow-lg w-60 transition-transform duration-300`}
+      className={`absolute ${positionClass} min-w-40 sm:min-w-48 md:w-60 flex border border-black bg-white bg-opacity-80 backdrop-blur-md p-4 rounded-lg shadow-lg transition-transform duration-300`}
     >
       <div className='mr-2'>
         <svg width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -76,8 +65,8 @@ export default function HeroSection() {
         </svg>
       </div>
       <div>
-        <p className="text-black font-semibold text-md mt-1">{quote}</p>
-        <p className="text-gray-600 text-sm mt-1">{author}</p>
+        <p className="text-black font-semibold text-sm md:text-md mt-1">{quote}</p>
+        <p className="text-gray-600 text-xs md:text-sm mt-1">{author}</p>
         <div className='flex justify-end p-1 items-center'>
           {Array(stars).fill(0).map((_, i) => (
             <svg key={i} width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -141,7 +130,7 @@ export default function HeroSection() {
     return (
       <div
         ref={el => addToRefs(el, index, 'icon')}
-        className={`absolute ${positionClass} p-2 bg-white bg-opacity-80 rounded-full shadow-md transition-transform duration-300`}
+        className={`absolute ${positionClass} p-2 md:p-3 bg-white bg-opacity-80 rounded-full shadow-md transition-transform duration-300`}
       >
         {iconComponents[icon]}
       </div>
@@ -152,7 +141,7 @@ export default function HeroSection() {
     <>
       <div className="relative  min-h-screen w-full overflow-hidden bg-white flex flex-col items-center justify-center">
         {/* Background SVGs */}
-        <div className="absolute pt-20 inset-0 flex items-center justify-center opacity-30">
+        <div className="absolute md:rotate-0 rotate-90 pt-20 inset-0 flex items-center justify-center opacity-30">
           <svg width="1124" height="776" viewBox="0 0 1124 776" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g filter="url(#filter0_f_2001_4022)">
               <path d="M632.264 141.194C767.715 180.033 882.393 242.83 958.309 312.936C1034.25 383.065 1071.29 460.391 1051.81 528.332C1032.32 596.273 959.936 642.221 858.373 661.452C756.842 680.677 626.313 673.161 490.862 634.321C355.411 595.481 240.733 532.685 164.817 462.578C88.8779 392.449 51.8378 315.123 71.3196 247.182C90.8013 179.241 163.19 133.293 264.753 114.062C366.284 94.8376 496.813 102.354 632.264 141.194Z" stroke="#B30738" />
@@ -179,14 +168,13 @@ export default function HeroSection() {
         {/* Top Reviews */}
         <ReviewCard
           index={0}
-          positionClass="top-20 left-1/6"
+          positionClass=" md:top-20 w-50 md:left-1/6 top-12  right-1"
           quote="All About aesthetics"
           author="You care deeply about how things look and feel. If it's not beautiful, it’s not done."
         />
-
         <ReviewCard
           index={1}
-          positionClass="top-20 right-1/6"
+          positionClass="md:top-20 hidden md:flex w-60 md:right-1/6 top-40 right-4"
           quote="Doodler"
           author="You’ve got a sketchbook full of half-baked ideas and imaginary worlds waiting to be built."
           stars={2}
@@ -195,15 +183,14 @@ export default function HeroSection() {
         {/* Middle Reviews */}
         <ReviewCard
           index={2}
-          positionClass="top-1/2.5 left-1/12"
+          positionClass="md:top-1/3 md:left-1/12 w-64 top-48 left-4"
           quote="Optimistic Overthinker"
           author="You dream big but sometimes get stuck analyzing all the “what ifs” before you start."
           stars={2}
         />
-
         <ReviewCard
           index={3}
-          positionClass="top-1/2.5 right-1/12"
+          positionClass="md:top-1/2.5 hidden md:flex md:right-1/12 w-14 top-[45%] right-4"
           quote="Feedback Fighter"
           author="Every time someone gives you constructive criticism, you say “It’s a design choice.”"
           stars={1}
@@ -212,57 +199,53 @@ export default function HeroSection() {
         {/* Bottom Reviews */}
         <ReviewCard
           index={4}
-          positionClass="bottom-20 left-1/10"
+          positionClass="md:bottom-20 md:left-1/10 w-14 bottom-12 left-4"
           quote="Big Mouth"
           author="You learned HTML yesterday and now you’re critiquing Apple’s design decisions on Twitter."
           stars={1}
         />
-
         <ReviewCard
           index={5}
-          positionClass="bottom-20 right-1/10"
-          quote="Stratergist"
-          author="Calm in chaos, you’re the planner with the roadmap"
+          positionClass="md:bottom-20 md:right-1/10 w-50 bottom-4 right-4"
+          quote="Strategist"
+          author="Calm in chaos, you’re the planner with the roadmap."
           stars={3}
         />
 
         {/* Floating Icons */}
         <FloatingIcon
           index={0}
-          positionClass="top-22 left-1/2 transform -translate-x-1/2"
+          positionClass="md:top-22 md:left-1/2 md:-translate-x-1/2 top-40 left-1/2 -translate-x-1/2"
           icon="eye"
         />
-
         <FloatingIcon
           index={1}
-          positionClass="top-54 left-1/8"
+          positionClass="md:top-54 md:left-1/8 top-20 left-4"
           icon="chat2"
         />
         <FloatingIcon
-          index={1}
-          positionClass="top-62 right-1/4"
+          index={2}
+          positionClass="md:top-62 md:right-1/4 top-80 right-4"
           icon="heart"
         />
-
-        <FloatingIcon
-          index={2}
-          positionClass="bottom-1/4 right-1/14"
-          icon="chat"
-        />
-
         <FloatingIcon
           index={3}
-          positionClass="bottom-1/4 left-1/15"
+          positionClass="md:bottom-1/4 md:right-1/14 bottom-50 right-3"
+          icon="chat"
+        />
+        <FloatingIcon
+          index={4}
+          positionClass="md:bottom-1/4 md:left-1/15  left-4"
           icon="graduation"
         />
 
         {/* Main Content */}
         <div className="relative pt-24 z-10 text-center px-4">
-          <h1 className=" text-3xl md:text-6xl font-bold mb-6 animate-pulse">
+          <h1 className=" text-4xl md:text-6xl font-bold mb-6 ">
             Your <span className='text-[#B30738]'>Campas</span> Just <br /> Got a Lot Bigger.
           </h1>
 
-          <p className="text-gray-800 text-xl max-w-2xl mx-auto mb-8">
+          <p className="text-gray-800 text-lg max-w-sm mx-auto mb-8">
             Meet students beyond your campus walls, spark unexpected conversations, and change your perspective — one chat at a time.
           </p>
 

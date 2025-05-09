@@ -2,7 +2,7 @@
 import { useRef, useEffect } from 'react';
 import Head from 'next/head';
 
-export default function LandingPage() {
+export default function HeroSection() {
   const reviewsRef = useRef<HTMLDivElement[]>([]);
   const iconsRef = useRef<HTMLDivElement[]>([]);
 
@@ -11,7 +11,6 @@ export default function LandingPage() {
       // Add animation to review cards
       const animateElements = () => {
         reviewsRef.current.forEach((review, index) => {
-          if (!review) return;
           const time = Date.now() * 0.001;
           const delay = index * 0.2;
 
@@ -28,7 +27,6 @@ export default function LandingPage() {
 
         // Add animation to floating icons
         iconsRef.current.forEach((icon, index) => {
-          if (!icon) return;
           const time = Date.now() * 0.001;
           const delay = index * 0.3;
 
@@ -70,7 +68,7 @@ export default function LandingPage() {
   }) => (
     <div
       ref={el => addToRefs(el, index, 'review')}
-      className={`absolute ${positionClass} flex justify-start border border-gray-200 bg-white bg-opacity-80 backdrop-blur-md p-4 rounded-lg shadow-lg w-48 md:w-60 transition-transform duration-300`}
+      className={`absolute ${positionClass} flex justify-start border border-black bg-white bg-opacity-80 backdrop-blur-md p-4 rounded-lg shadow-lg w-60 transition-transform duration-300`}
     >
       <div className='mr-2'>
         <svg width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -78,8 +76,8 @@ export default function LandingPage() {
         </svg>
       </div>
       <div>
-        <p className="text-black font-semibold text-sm md:text-md mt-1">{quote}</p>
-        <p className="text-gray-600 text-xs md:text-sm mt-1">{author}</p>
+        <p className="text-black font-semibold text-md mt-1">{quote}</p>
+        <p className="text-gray-600 text-sm mt-1">{author}</p>
         <div className='flex justify-end p-1 items-center'>
           {Array(stars).fill(0).map((_, i) => (
             <svg key={i} width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -113,6 +111,7 @@ export default function LandingPage() {
         <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M16.6875 4.5072C14.7516 4.5072 13.0566 5.3397 12 6.74689C10.9434 5.3397 9.24844 4.5072 7.3125 4.5072C5.77146 4.50894 4.29404 5.12188 3.20436 6.21156C2.11468 7.30124 1.50174 8.77866 1.5 10.3197C1.5 16.8822 11.2303 22.1941 11.6447 22.4135C11.7539 22.4722 11.876 22.503 12 22.503C12.124 22.503 12.2461 22.4722 12.3553 22.4135C12.7697 22.1941 22.5 16.8822 22.5 10.3197C22.4983 8.77866 21.8853 7.30124 20.7956 6.21156C19.706 5.12188 18.2285 4.50894 16.6875 4.5072ZM12 20.8947C10.2881 19.8972 3 15.3531 3 10.3197C3.00149 9.17641 3.45632 8.08038 4.26475 7.27195C5.07317 6.46352 6.16921 6.00869 7.3125 6.0072C9.13594 6.0072 10.6669 6.97845 11.3062 8.53845C11.3628 8.67601 11.4589 8.79366 11.5824 8.87647C11.7059 8.95927 11.8513 9.00348 12 9.00348C12.1487 9.00348 12.2941 8.95927 12.4176 8.87647C12.5411 8.79366 12.6372 8.67601 12.6937 8.53845C13.3331 6.97564 14.8641 6.0072 16.6875 6.0072C17.8308 6.00869 18.9268 6.46352 19.7353 7.27195C20.5437 8.08038 20.9985 9.17641 21 10.3197C21 15.3456 13.71 19.8963 12 20.8947Z" fill="#B30738" />
         </svg>
+
       ),
       chat: (
         <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -133,8 +132,9 @@ export default function LandingPage() {
       ),
       chat2: (
         <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M11.9999 3.0072C10.3166 3.00684 8.66188 3.44228 7.19679 4.27117C5.7317 5.10005 4.50616 6.29413 3.63947 7.73717C2.77277 9.18022 2.29444 10.8231 2.25104 12.5058C2.20764 14.1886 2.60065 15.8539 3.39181 17.3397L2.32774 20.5319C2.2396 20.7962 2.22681 21.0798 2.2908 21.351C2.35479 21.6221 2.49304 21.8701 2.69004 22.0671C2.88704 22.2641 3.13502 22.4023 2.63023 22.4663C2.89149 22.5303 3.16586 22.5175 3.42447 17.9453L5.74103 17.2637C6.48487 17.6211 7.28236 17.8539 8.10166 17.9528C8.4997 18.8854 9.08273 19.7276 9.8155 20.4286C10.5483 21.1295 11.4156 21.6745 12.365 22.0307C13.3144 22.3869 14.3261 22.5469 15.3391 22.501C16.3521 22.4552 17.3452 22.2043 18.2585 21.7637L20.5751 22.4453C20.8336 22.5214 21.1079 22.5265 21.369 22.4599C21.6302 22.3934 21.8686 22.2578 22.0592 22.0673C22.2498 21.8768 22.3855 21.6384 22.4522 21.3773C22.5188 21.1162 22.5139 20.842 22.4379 20.5834L21.7563 18.2659ZM5.81228 15.7103C5.74061 15.7105 5.66931 15.7205 5.6004 15.7403L2.99978 16.5072L3.76572 13.9047C3.82019 13.7166 3.799 13.5148 3.70666 13.3422C3.0282 12.0733 2.82829 10.6029 3.14337 9.19903C3.45846 7.79512 4.26755 6.55118 5.42317 5.69398C6.57878 4.83678 8.00395 4.4234 9.43889 4.52919C10.8738 4.63498 12.223 5.2529 13.2404 6.27031C14.2578 7.28771 14.8757 8.63686 14.9815 10.0718C15.0873 11.5067 14.6739 12.9319 13.8167 14.0875C12.9595 15.2431 11.7156 16.0522 10.3117 16.3673C8.90775 16.6824 7.43736 16.4825 6.16853 15.804C6.05942 15.7437 5.93698 15.7114 5.81228 15.7103ZM20.2301 18.4037L20.9998 21.0072L18.3973 20.2412C18.2093 20.1867 18.0074 20.2079 17.8348 20.3003C16.4537 21.0377 14.8392 21.2066 13.3354 20.7709C11.8315 20.3352 10.5574 19.3294 9.78447 17.9678C10.8114 17.8606 11.8051 17.5424 12.7032 17.033C13.6013 16.5237 14.3845 15.8342 15.0036 15.0079C15.6227 14.1816 16.0643 13.2363 16.3008 12.2313C16.5373 11.2262 16.5636 10.1831 16.3779 9.16747C17.2726 9.37837 18.107 9.79205 18.8165 10.3766C19.5259 10.9611 20.0917 11.7008 20.4699 12.5386C20.8481 13.3765 21.0288 14.29 20.998 15.2088C20.9671 16.1275 20.7256 17.0269 20.292 17.8375C20.1986 18.0111 20.1774 18.2145 20.2329 18.4037H20.2301Z" fill="#B30738" />
+          <path d="M11.9999 3.0072C10.3166 3.00684 8.66188 3.44228 7.19679 4.27117C5.7317 5.10005 4.50616 6.29413 3.63947 7.73717C2.77277 9.18022 2.29444 10.8231 2.25104 12.5058C2.20764 14.1886 2.60065 15.8539 3.39181 17.3397L2.32774 20.5319C2.2396 20.7962 2.22681 21.0798 2.2908 21.351C2.35479 21.6221 2.49304 21.8701 2.69004 22.0671C2.88704 22.2641 3.13502 22.4023 3.40618 22.4663C3.67733 22.5303 3.96095 22.5175 4.22524 22.4294L7.41743 21.3653C8.72503 22.0608 10.1739 22.4493 11.654 22.5012C13.1342 22.5531 14.6067 22.2672 15.9598 21.6651C17.3129 21.063 18.5111 20.1605 19.4634 19.0262C20.4156 17.8918 21.097 16.5555 21.4557 15.1185C21.8144 13.6816 21.841 12.1818 21.5335 10.733C21.226 9.28421 20.5925 7.92452 19.6811 6.75712C18.7697 5.58973 17.6043 4.64531 16.2733 3.99557C14.9424 3.34582 13.481 3.00781 11.9999 3.0072ZM11.9999 21.0072C10.5496 21.0082 9.12471 20.6263 7.86931 19.9C7.77739 19.8467 7.6752 19.8135 7.56949 19.8027C7.46379 19.7919 7.357 19.8036 7.25618 19.8372L3.74993 21.0072L4.91899 17.501C4.95269 17.4002 4.9646 17.2934 4.95394 17.1877C4.94327 17.082 4.91027 16.9798 4.85712 16.8878C3.94772 15.3156 3.5826 13.4871 3.8184 11.6862C4.0542 9.88521 4.87774 8.21241 6.16126 6.92726C7.44479 5.64211 9.11655 4.81646 10.9172 4.57838C12.7179 4.3403 14.5468 4.70312 16.1202 5.61053C17.6936 6.51795 18.9236 7.91924 19.6193 9.59703C20.3151 11.2748 20.4377 13.1353 19.9681 14.8899C19.4986 16.6445 18.4632 18.1951 17.0224 19.3012C15.5817 20.4072 13.8163 21.0069 11.9999 21.0072Z" fill="#B30738" />
         </svg>
+
       )
     };
 
@@ -150,11 +150,7 @@ export default function LandingPage() {
 
   return (
     <>
-      <Head>
-        <title>Your Campus - 3D Landing Page</title>
-      </Head>
-      
-      <div className="relative min-h-screen w-full overflow-hidden bg-white flex flex-col items-center justify-center">
+      <div className="relative  min-h-screen w-full overflow-hidden bg-white flex flex-col items-center justify-center">
         {/* Background SVGs */}
         <div className="absolute pt-20 inset-0 flex items-center justify-center opacity-30">
           <svg width="1124" height="776" viewBox="0 0 1124 776" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -180,111 +176,104 @@ export default function LandingPage() {
         </div>
 
         {/* Floating Review Containers */}
-        {/* Top Reviews - Mobile: stack vertically, Desktop: side by side */}
-        <div className="relative w-full">
-          <ReviewCard
-            index={0}
-            positionClass="top-10 left-4 md:top-20 md:left-1/6"
-            quote="All About aesthetics"
-            author="You care deeply about how things look and feel. If it's not beautiful, it's not done."
-          />
+        {/* Top Reviews */}
+        <ReviewCard
+          index={0}
+          positionClass="top-20 left-1/6"
+          quote="All About aesthetics"
+          author="You care deeply about how things look and feel. If it's not beautiful, it’s not done."
+        />
 
-          <ReviewCard
-            index={1}
-            positionClass="top-40 right-4 md:top-20 md:right-1/6"
-            quote="Doodler"
-            author="You've got a sketchbook full of half-baked ideas and imaginary worlds waiting to be built."
-            stars={2}
-          />
-        </div>
+        <ReviewCard
+          index={1}
+          positionClass="top-20 right-1/6"
+          quote="Doodler"
+          author="You’ve got a sketchbook full of half-baked ideas and imaginary worlds waiting to be built."
+          stars={2}
+        />
 
-        {/* Middle Reviews - Mobile: stack vertically, Desktop: side by side */}
-        <div className="relative w-full">
-          <ReviewCard
-            index={2}
-            positionClass="top-80 left-4 md:top-1/2.5 md:left-1/12"
-            quote="Optimistic Overthinker"
-            author="You dream big but sometimes get stuck analyzing all the 'what ifs' before you start."
-            stars={2}
-          />
+        {/* Middle Reviews */}
+        <ReviewCard
+          index={2}
+          positionClass="top-1/2.5 left-1/12"
+          quote="Optimistic Overthinker"
+          author="You dream big but sometimes get stuck analyzing all the “what ifs” before you start."
+          stars={2}
+        />
 
-          <ReviewCard
-            index={3}
-            positionClass="top-[28rem] right-4 md:top-1/2.5 md:right-1/12"
-            quote="Feedback Fighter"
-            author="Every time someone gives you constructive criticism, you say 'It's a design choice.'"
-            stars={1}
-          />
-        </div>
+        <ReviewCard
+          index={3}
+          positionClass="top-1/2.5 right-1/12"
+          quote="Feedback Fighter"
+          author="Every time someone gives you constructive criticism, you say “It’s a design choice.”"
+          stars={1}
+        />
 
-        {/* Bottom Reviews - Mobile: stack vertically, Desktop: side by side */}
-        <div className="relative w-full">
-          <ReviewCard
-            index={4}
-            positionClass="bottom-32 left-4 md:bottom-20 md:left-1/10"
-            quote="Big Mouth"
-            author="You learned HTML yesterday and now you're critiquing Apple's design decisions on Twitter."
-            stars={1}
-          />
+        {/* Bottom Reviews */}
+        <ReviewCard
+          index={4}
+          positionClass="bottom-20 left-1/10"
+          quote="Big Mouth"
+          author="You learned HTML yesterday and now you’re critiquing Apple’s design decisions on Twitter."
+          stars={1}
+        />
 
-          <ReviewCard
-            index={5}
-            positionClass="bottom-20 right-4 md:bottom-20 md:right-1/10"
-            quote="Strategist"
-            author="Calm in chaos, you're the planner with the roadmap"
-            stars={3}
-          />
-        </div>
+        <ReviewCard
+          index={5}
+          positionClass="bottom-20 right-1/10"
+          quote="Stratergist"
+          author="Calm in chaos, you’re the planner with the roadmap"
+          stars={3}
+        />
 
-        {/* Floating Icons - Adjusted positions for mobile */}
+        {/* Floating Icons */}
         <FloatingIcon
           index={0}
-          positionClass="top-24 left-1/2 transform -translate-x-1/2"
+          positionClass="top-22 left-1/2 transform -translate-x-1/2"
           icon="eye"
         />
 
         <FloatingIcon
           index={1}
-          positionClass="top-96 left-8 md:top-54 md:left-1/8"
+          positionClass="top-54 left-1/8"
           icon="chat2"
         />
-
         <FloatingIcon
-          index={2}
-          positionClass="top-[32rem] right-8 md:top-62 md:right-1/4"
+          index={1}
+          positionClass="top-62 right-1/4"
           icon="heart"
         />
 
         <FloatingIcon
-          index={3}
-          positionClass="bottom-40 right-8 md:bottom-1/4 md:right-1/14"
+          index={2}
+          positionClass="bottom-1/4 right-1/14"
           icon="chat"
         />
 
         <FloatingIcon
-          index={4}
-          positionClass="bottom-40 left-8 md:bottom-1/4 md:left-1/15"
+          index={3}
+          positionClass="bottom-1/4 left-1/15"
           icon="graduation"
         />
 
         {/* Main Content */}
-        <div className="relative pt-24 md:pt-24 z-10 text-center px-4 w-full">
-          <h1 className="text-3xl md:text-6xl font-bold mb-6 animate-pulse">
-            Your <span className='text-[#B30738]'>Campus</span> Just <br /> Got a Lot Bigger.
+        <div className="relative pt-24 z-10 text-center px-4">
+          <h1 className=" text-3xl md:text-6xl font-bold mb-6 animate-pulse">
+            Your <span className='text-[#B30738]'>Campas</span> Just <br /> Got a Lot Bigger.
           </h1>
 
-          <p className="text-gray-800 text-lg md:text-xl max-w-2xl mx-auto mb-8">
+          <p className="text-gray-800 text-xl max-w-2xl mx-auto mb-8">
             Meet students beyond your campus walls, spark unexpected conversations, and change your perspective — one chat at a time.
           </p>
 
           <button
-            className="bg-[#B30738] hover:bg-red-800 text-white font-bold py-3 px-8 md:px-20 rounded-lg text-lg transition-colors duration-300 mb-4 shadow-lg"
+            className="bg-[#B30738] hover:bg-red-800 text-white font-bold py-3 px-20 rounded-lg text-lg transition-colors duration-300 mb-4 shadow-lg"
           >
             Start chatting
           </button>
 
           <p className="text-gray-600 text-md">
-            Because <span className='text-[#B30738]'>Assumptions</span> Don't Define You.
+            Because <span className='text-[#B30738]'>Assumptions</span> Don’t Define You.
           </p>
         </div>
       </div>
